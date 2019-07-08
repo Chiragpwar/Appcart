@@ -1,0 +1,52 @@
+
+.centerfrom{
+    display: inline-block !important;
+    top: 50px;
+    left: 34%; 
+   }
+
+   .avatar-pic {
+    width: 150px;
+    }
+    .upload-btn-wrapper {
+        position: relative;
+        overflow: hidden;
+        display: inline-block;
+        right: 25%
+      }
+      
+      .btn {
+        border: 2px solid gray;
+        color: gray;
+        background-color: white;
+        padding: 8px 20px;
+        border-radius: 8px;
+        font-size: 20px;
+        font-weight: bold;
+      }
+      
+      .upload-btn-wrapper input[type=file] {
+        font-size: 30px;
+        position: absolute;
+        left: 0;
+        top: 0;
+        opacity: 0;
+      }
+    
+      .fn-sz{
+          font-size: 10px;
+      }
+      .img-sz{
+        width: 63px;
+        height: 50px;
+        border-radius: 50%;
+      }
+      .btn-size{
+        font-size: 15px;
+      }
+      .mr48{
+        margin-left: 48px;
+      }
+      .mr25{
+        margin-left: 25px;
+      }

@@ -1,33 +1,93 @@
-<!--Navbar -->
-<nav class="mb-1 navbar navbar-expand-lg navbar-dark info-color">
-  <a class="navbar-brand" href="#">App</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-555"
-    aria-controls="navbarSupportedContent-555" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarSupportedContent-555">
+<!--Navbar-->
+
+<mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark unique-color" [containerInside]="false">
+
+  <!-- Navbar brand -->
+  <mdb-navbar-brand><a class="navbar-brand" [routerLink]="['/']" >Appcart</a></mdb-navbar-brand>
+
+  <!-- Collapsible content -->
+  <links>
+
+    <!-- Links -->
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="#">Home
-          <span class="sr-only">(current)</span>
-        </a>
+        <a [routerLink]="['/']"  class="nav-link waves-light" mdbWavesEffect>Home<span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Features</a>
+        <a [routerLink]="['/men-section']" class="nav-link waves-light" mdbWavesEffect>Men</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Pricing</a>
+        <a  [routerLink]="['/female-section']" class="nav-link waves-light" mdbWavesEffect>Women</a>
       </li>
+   
+      <!-- Dropdown -->
+      <!-- <li class="nav-item dropdown" dropdown>
+        <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
+          Basic dropdown<span class="caret"></span></a>
+        <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
+          <a class="dropdown-item waves-light" mdbWavesEffect href="#">Action</a>
+          <a class="dropdown-item waves-light" mdbWavesEffect href="#">Another action</a>
+          <a class="dropdown-item waves-light" mdbWavesEffect href="#">Something else here</a>
+          <div class="divider dropdown-divider"></div>
+          <a class="dropdown-item waves-light" mdbWavesEffect href="#">Separated link</a>
+        </div>
+      </li> -->
+
     </ul>
+
     <ul class="navbar-nav ml-auto nav-flex-icons">
-      <li class="nav-item avatar">
-        <a class="nav-link p-0" href="#">
-          <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-5.jpg" class="rounded-circle z-depth-0"
-            alt="avatar image" height="35">
+      <li class="nav-item">
+          <div class="md-form my-0">
+              <input class="form-control mr-sm-2" (keyup)="ProductDetail($event.target.value)" type="text" placeholder="Search">
+          </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link">
+            <div class="btn-group" mdbDropdown>
+                <mdb-icon fas icon="shopping-cart"  mdbDropdownToggle></mdb-icon>
+                <mdb-badge  color="red">{{count}}</mdb-badge>
+                <div class="dropdown-menu dropdown-menu-right dropdown-primary" *ngIf = "carts.length > 0" >
+                  <div *ngFor = 'let carts of carts'>
+                    <a [routerLink]="['/view']">
+                      <img src="{{carts.ProductImage}}" alt="" class="img-sz rounded-circle z-depth-0">
+                      <span class="productname">{{carts.ProductName}}</span>
+                      <span class="productprice" >$ {{carts.Productprice}}</span>
+                    </a>
+                    <button (click)="removeproduct(carts)" type="button" class="close cls" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+               
+                </div>
+            </div>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link">  
+          <mdb-icon fab icon="gratipay"></mdb-icon>
+          <mdb-badge  color="red">0</mdb-badge>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link">
+          <div class="btn-group" mdbDropdown>
+              <img src="{{imageSrc}}" alt="" class="img-sz rounded-circle z-depth-0" mdbDropdownToggle>
+            <!-- <mdb-icon fas icon="user" mdbDropdownToggle></mdb-icon> -->
+            <div class="dropdown-menu dropdown-menu-right dropdown-primary">
+                <a   *ngIf ="token != ''"  class="dropdown-item"  [routerLink]="['/profile',token]">Profile</a>
+              <a class="dropdown-item"  *ngIf ="token == ''"  [routerLink]="['/Login']">Login</a>
+              <a class="dropdown-item"  *ngIf ="token != ''"  (click)="logout()">Logout</a>
+              <!-- <div class="divider dropdown-divider"></div> -->
+              <!-- <a class="dropdown-item" href="#">Separated link</a> -->
+            </div>
+          </div>
         </a>
       </li>
     </ul>
-  </div>
-</nav>
-<router-outlet class="main"></router-outlet>
-<!--/.Navbar -->
+  </links>
+  <!-- Collapsible content -->
+
+</mdb-navbar>
+<!-- <app-home (onClick)="upCase($event)"></app-home> -->
+<router-outlet></router-outlet>
+<!--/.Navbar-->

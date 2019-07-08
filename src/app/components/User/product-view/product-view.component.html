@@ -1,0 +1,133 @@
+<!------ Include the above in your HEAD tag ---------->
+
+<html>
+
+  <head>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!------ Include the above in your HEAD tag ---------->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
+
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="card">
+        <h3 style="color: #3f729b !important;">MY CART ( {{count}})</h3>
+        <button class="add-to-cart btn btn-default shop" type="button" routerlink="/">Continue Shopping</button>
+      </div>
+    </div>
+    <div class="container" *ngIf='!warn'>
+      <div class="alert alert-warning">
+        <strong>Warning!</strong> Need To login for place order. <a style="cursor: pointer" [routerLink]="['/Login']">Click here for login !</a>
+      </div>
+    </div>
+    <div class="container" *ngIf='warn'>
+    </div>
+    <div>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-9">
+            <div class="card" *ngFor="let cart of carts; let i = index">
+
+              <div *ngIf="cart != null">
+                <div class="wrapper row">
+                  <div class="preview col-md-6">
+
+                    <div class="preview-pic tab-content">
+                      <div class="tab-pane active"><img id="pic-1" src="{{cart.ProductImage}}"/></div>
+                    </div>
+				  </div>
+                  <div class="details col-md-6">
+					<h3 class="product-title">{{cart.ProductName}}</h3>
+                    <div class="rating">
+                      <div class="stars">
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                      </div>
+                    </div>
+                    <p class="product-description">{{cart.productDescription}}</p>
+                    <h4 class="price">current price:
+                      <span>${{cart.Productprice}}</span></h4>
+                    <p class="vote">
+                      <strong>91%</strong>
+                      of buyers enjoyed this product!
+                      <strong>(87 votes)</strong>
+                    </p>
+
+                    <div class="action">
+                      <div class="center">
+                        <p></p>
+                        <div class="input-group">
+                          <span class="input-group-btn">
+                            <button type="button" class="btn plus btn-default btn-number" data-type="minus" id="minus" (click)="MinusQty(i)">
+                              <span class="glyphicon glyphicon-minus">-</span>
+                            </button>
+                          </span>
+                          <input type="text" class="form-control input-number" value="1" id="{{i}}" min="0">
+                          <span class="input-group-btn">
+                            <button type="button" class="btn plus btn-default btn-number" data-type="plus" id="plus" (click)="AddQty(i)">
+                              <span class="glyphicon glyphicon-plus">+</span>
+							</button>
+							<button class="like btn btn-default" type="button" (click)="Addwish(cart)">
+							<span class="fa fa-heart"></span></button>
+                          </span>
+                        </div>
+                        <p></p>
+                      </div>
+                      <!-- <button class="add-to-cart btn btn-default" type="button" (click)="AddinCart(productlist)">add to cart</button> -->
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <div class="col-md-3 container" *ngIf='warn'>
+            <div class="card">
+              <div class="details">
+                <h3>chirag pawar</h3>
+                <p></p>
+                <p class="product-description">Email : pawarcrg@live.com</p>
+                <p class="product-description">Addres : surat</p>
+                <h4 class="price">price:
+                  <span>$ {{price}}</span></h4>
+              </div>
+              <p></p>
+              
+              <!-- <button class="add-to-cart btn btn-default" type="button"  data-toggle="modal" data-target="#myModal">buy now</button> -->
+            
+            </div>
+
+          </div>
+          <div class="container" *ngIf='warn'>
+            <form [formGroup]="stripeTest" novalidate (ngSubmit)="Stripe_buy($event)" >
+            <div class="col-lg-6">
+            <input class="form-control" type="text" formControlName="name" placeholder="Name on card">
+            </div>
+            <div class="col-lg-6">
+            <div id="card-element" class="field"></div>
+            </div>
+            <div class="col-lg-12">
+            <button class="btn btn-success" type="submit">
+            BUY
+            </button>
+            </div>
+            </form>
+            </div>
+        </div>
+      </div>
+    </div>
+
+
+  </body>
+
+</html>
+
+<!-- <div class="center"> <p> </p><div class="input-group"> <span class="input-group-btn"> <button type="button" class="btn btn-default btn-number" disabled="disabled" data-type="minus" data-field="quant[1]"> <span class="glyphicon glyphicon-minus"></span> </button> </span> <input type="text" name="quant[1]" class="form-control input-number" value="1" min="1" max="10"> <span class="input-group-btn"> <button type="button" class="btn btn-default btn-number" data-type="plus" data-field="quant[1]"> <span class="glyphicon glyphicon-plus"></span> </button> </span> </div> <p></p> </div> -->

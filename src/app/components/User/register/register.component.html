@@ -1,0 +1,81 @@
+<!-- Material form register -->
+<div class="card col-md-4 mb-4 centerfrom">
+
+    <h5 class="card-header info-color white-text text-center py-4">
+        <strong>Sign up</strong>
+    </h5>
+
+    <!--Card content-->
+    <div class="card-body px-lg-5 pt-0">
+
+        <!-- Form -->
+        <form [formGroup]="usersForm" (submit)="Adduser()" class="text-center" style="color: #757575;">
+
+            <div class="form-row">
+                <div class="col">
+                    <!-- First name -->
+                    <div class="md-form">
+                        <input type="text" formControlName="FirstName" placeholder="FirstName" id="materialRegisterFormFirstName" class="form-control">
+                    </div>
+                </div>
+                <div class="col">
+                    <!-- Last name -->
+                    <div class="md-form">
+                        <input type="text" formControlName="LastName" placeholder="LastName" id="materialRegisterFormLastName" class="form-control">
+                    </div>
+                </div>
+            </div>
+
+            <!-- E-mail -->
+            <div class="md-form mt-0">
+                <input type="email" formControlName="Email" placeholder="Email" id="materialRegisterFormEmail" class="form-control">
+            </div>
+
+            <div class="md-form mt-0">
+                <input type="text" formControlName="City" placeholder="City" id="materialRegisterFormEmail" class="form-control">
+            </div>
+
+            <div class="md-form mt-0">
+                <input type="text" formControlName="Address" placeholder="Address" id="materialRegisterFormEmail" class="form-control">
+            </div>
+
+            <!-- Password -->
+            <div class="md-form">
+                <input type="password" formControlName="Password" placeholder="Password" id="materialRegisterFormPassword" class="form-control" aria-describedby="materialRegisterFormPasswordHelpBlock">
+                <small id="materialRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
+                    At least 8 characters and 1 digit
+                </small>
+            </div>
+
+            <!-- Phone number -->
+            <div class="md-form">
+                <input type="text" formControlName="Phone"  placeholder="Phone" id="materialRegisterFormPhone" class="form-control" aria-describedby="materialRegisterFormPhoneHelpBlock">
+                <small id="materialRegisterFormPhoneHelpBlock" class="form-text text-muted mb-4">
+                    Optional - for two step authentication
+                </small>
+            </div>
+            <!-- <div class="image-upload">
+                <img [src]="imageSrc"/>
+                <input class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0" name="imageUrl" type="file" accept="image/*" (change)="handleInputChange($event)" />
+            </div> -->
+            <div class="upload-btn-wrapper">
+                 <img [src]="imageSrc" class="img-sz"/>
+                <button class="btn fn-sz">Upload a file</button>
+                <input name="imageUrl" type="file" accept="image/*" (change)="handleInputChange($event)" />
+              </div>
+            <!-- Sign up button -->
+            <button class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0 btn-size" type="submit">Sign in</button>
+            <hr>
+
+            <!-- Terms of service -->
+            <p>By clicking
+                <em>Sign up</em> you agree to our
+                <a href="" target="_blank">terms of service</a>
+
+        </form>
+        <!-- Form -->
+
+    </div>
+
+</div>
+<!-- Material form register -->

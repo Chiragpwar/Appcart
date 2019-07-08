@@ -9,28 +9,27 @@
         <div class="card-body px-lg-5 pt-0">
       
           <!-- Form -->
-          <form class="text-center" style="color: #757575;">
+          <form  [formGroup]="usersForm" (submit)="login()" class="text-center" style="color: #757575;">
       
             <!-- Email -->
             <div class="md-form">
-              <input type="email" id="materialLoginFormEmail" placeholder="Email" class="form-control">
+              <input type="email" formControlName="Email" id="materialLoginFormEmail" placeholder="Email" class="form-control">
               
             </div>
       
             <!-- Password -->
             <div class="md-form">
-              <input type="password" id="materialLoginFormPassword" placeholder="password" class="form-control">
+              <input type="password" formControlName="Password" id="materialLoginFormPassword" placeholder="password" class="form-control">
               
             </div>
       
             <div class="d-flex justify-content-around">
-              <div>
-                <!-- Remember me -->
+              <!-- <div>
                 <div class="form-check">
                   <input type="checkbox" class="form-check-input" id="materialLoginFormRemember">
                   <label class="form-check-label" for="materialLoginFormRemember">Remember me</label>
                 </div>
-              </div>
+              </div> -->
               <div>
                 <!-- Forgot password -->
                 <a href="">Forgot password?</a>
@@ -42,12 +41,19 @@
       
             <!-- Register -->
             <p>Not a member?
-              <a href="">Register</a>
+              <a  [routerLink] = "['/Signup']">Register</a>
             </p>
       
             <!-- Social login -->
-            <p>or sign in with:</p>
-            <a type="button" class="btn-floating btn-fb btn-sm">
+         <p>or sign in with:</p>
+         <a type="button" (click)="signInWithFB()" class="btn-floating btn-fb btn-sm">
+          <i class="fab fa-facebook-f"></i>
+      </a>
+      <a type="button" (click)="signInWithGoogle()" class="icons-sm gplus-ic btn-sm">
+          <i class="fab fa-google-plus-g"> </i>
+      </a>
+
+            <!-- <a (click)="signInWithGoogle()" type="button" class="btn-floating btn-fb btn-sm">
               <i class="fab fa-facebook-f"></i>
             </a>
             <a type="button" class="btn-floating btn-tw btn-sm">
@@ -58,7 +64,7 @@
             </a>
             <a type="button" class="btn-floating btn-git btn-sm">
               <i class="fab fa-github"></i>
-            </a>
+            </a> -->
       
           </form>
           <!-- Form -->

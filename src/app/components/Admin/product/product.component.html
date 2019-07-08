@@ -1,0 +1,58 @@
+<!-- Material form register -->
+<div class="card col-md-4 mb-4 centerfrom">
+
+        <h5 class="card-header info-color white-text text-center py-4">
+            <strong>Add poduct</strong>
+        </h5>
+    
+        <!--Card content-->
+        <div class="card-body px-lg-5 pt-0">
+    
+            <!-- Form -->
+            <form [formGroup]="poductForm" (submit)="Addproduct()" class="text-center" style="color: #757575;">
+    
+                <div class="form-row">
+                    <div class="col">
+                        <!-- First name -->
+                        <div class="md-form">
+                            <input type="text" formControlName="Prductname" placeholder="Prductname" id="materialRegisterFormFirstName" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col">
+                        <!-- Last name -->
+                        <div class="md-form">
+                            <input type="text" formControlName="Productprice" placeholder="Productprice" id="materialRegisterFormLastName" class="form-control">
+                        </div>
+                    </div>
+                </div>
+    
+
+                <div class="md-form mt-0">
+                        <input type="text" formControlName="DiscountPrice" placeholder="DiscountPrice" id="materialRegisterFormEmail" class="form-control">
+                    </div>
+
+                <div class="md-form mt-0">
+                        <input type="text" formControlName="Description" placeholder="Description" id="materialRegisterFormEmail" class="form-control">
+                </div>
+                <div class="form-check">
+                        <input type="radio"  formControlName="categories" class="form-check-input" id="materialUnchecked" name="categories"  value="male" mdbInput>
+                        <label class="form-check-label" for="materialUnchecked">Male</label>
+                        <input type="radio"  formControlName="categories" class="form-check-input mr25" id="materialUnchecked" name="categories"  value="Female" mdbInput>
+                        <label class="form-check-label mr48" for="materialUnchecked">Female</label>
+                 </div>
+                <div class="upload-btn-wrapper">
+                     <img [src]="imageSrc" class="img-sz"/>
+                    <button class="btn fn-sz">Upload a file</button>
+                    <input name="imageUrl" type="file" accept="image/*" (change)="handleInputChange($event)" />
+                 </div>
+                <!-- Sign up button -->
+                <button class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0 btn-size" type="submit">Add Product</button>
+                <hr>
+    
+            </form>
+            <!-- Form -->
+    
+        </div>
+    
+    </div>
+    <!-- Material form register -->

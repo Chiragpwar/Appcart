@@ -1,0 +1,73 @@
+
+<div class="jumbotron" *ngIf = '!IsDiaplay'>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 offset-md-3">
+                    <h3></h3>
+                    <form name="form" (ngSubmit)="Updateuser(register)" #f="ngForm" novalidate>
+                        <div class="form-group">
+                            <label for="email">FirstName</label>
+                            <input type="text" class="form-control" name="FirstName" [(ngModel)]="register.FirstName" #FirstName="ngModel" [ngClass]="{ 'is-invalid': f.submitted && FirstName.invalid }" required />
+                            <div *ngIf="f.submitted && FirstName.invalid" class="invalid-feedback">
+                                <div *ngIf="FirstName.errors.required">FirstName is required</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="LastName">LastName</label>
+                            <input type="text" class="form-control" name="LastName" [(ngModel)]="register.LastName" #LastName="ngModel" [ngClass]="{ 'is-invalid': f.submitted && LastName.invalid }" required  />
+                            <div *ngIf="f.submitted && LastName.invalid" class="invalid-feedback">
+                                <div *ngIf="LastName.errors.required">LastName is required</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                                <label for="LastName">City</label>
+                                <input type="text" class="form-control" name="City" [(ngModel)]="register.City" #City="ngModel" [ngClass]="{ 'is-invalid': f.submitted && City.invalid }" required  />
+                                <div *ngIf="f.submitted && City.invalid" class="invalid-feedback">
+                                    <div *ngIf="City.errors.required">City is required</div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                    <label for="LastName">Address</label>
+                                    <input type="text" class="form-control" name="Address" [(ngModel)]="register.Address" #Address="ngModel" [ngClass]="{ 'is-invalid': f.submitted && Address.invalid }" required  />
+                                    <div *ngIf="f.submitted && Address.invalid" class="invalid-feedback">
+                                        <div *ngIf="Address.errors.required">Address is required</div>
+                                    </div>
+                                </div>
+                        <div class="form-group">
+                                <label for="LastName">Email</label>
+                                <input type="email" class="form-control" name="Email" [(ngModel)]="register.Email" #Email="ngModel" [ngClass]="{ 'is-invalid': f.submitted && Email.invalid }" required email  />
+                                <div *ngIf="f.submitted && Email.invalid" class="invalid-feedback">
+                                    <div *ngIf="Email.errors.required">Email is required</div>
+                                    <div *ngIf="Email.errors.Email">Email must be a valid email address</div>
+                                    
+                                </div>
+                        </div>
+                        <div class="form-group">
+                                <label for="LastName">Password</label>
+                                <input type="password" class="form-control" name="Password" [(ngModel)]="register.Password" #Password="ngModel" [ngClass]="{ 'is-invalid': f.submitted && Password.invalid }" required  />
+                                <div *ngIf="f.submitted && Password.invalid" class="invalid-feedback">
+                                    <div *ngIf="Password.errors.required">Password is required</div>
+                                </div>
+                        </div>
+                        <div class="form-group">
+                                <label for="LastName">Phone</label>
+                                <input type="text" class="form-control" name="Phone" [(ngModel)]="register.Phone" #Phone="ngModel" [ngClass]="{ 'is-invalid': f.submitted && Phone.invalid }" required  />
+                                <div *ngIf="f.submitted && Phone.invalid" class="invalid-feedback">
+                                    <div *ngIf="Phone.errors.required">Phone is required</div>
+                                </div>
+                        </div>
+                        <div class="form-group">
+                             <div class="upload-btn-wrapper">
+                                <img src="{{register.Imageurl}}" class="img-sz"/>
+                                  <button class="btn fn-sz">Upload a file</button>
+                                 <input name="imageUrl" type="file" accept="image/*" (change)="handleInputChange($event)" />
+                          </div>
+                        </div>
+                        <div class="form-group">
+                                <button class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0 btn-size" type="submit">Edit profile</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+      </div>

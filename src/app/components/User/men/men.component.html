@@ -4,13 +4,13 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <!------ Include the above in your HEAD tag ---------->
 
-
-
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+
   <div class="container">
+   <h3 class="h3">Men's Section </h3>
     <div class="row" >
-        <div class="col-md-4 szs" *ngFor = "let product of product" >
-            <div class="product-grid2">
+        <div class="col-md-3 col-sm-6 szs" *ngFor = "let product of product" >
+            <div class="product-grid2" >
                 <div class="product-image2">
                     <a href="#">
                         <img class="pic-1 pc1" src="{{product.ProductImage}}">
@@ -18,10 +18,10 @@
                     </a>
                     <ul class="social">
                         <li><a href="#" data-tip="Quick View"><i class="fa fa-eye"></i></a></li>
-                        <li><a  data-tip="Add to Wishlist"><i class="fa fa-shopping-bag"></i></a></li>
-                        <li><a (click)="AddTocart(product)" data-tip="Add to Cart"><i class="fa fa-shopping-cart"></i></a></li>
+                        <li><a href="#" data-tip="Add to Wishlist"><i class="fa fa-shopping-bag"></i></a></li>
+                        <li><a href="#" data-tip="Add to Cart"><i class="fa fa-shopping-cart"></i></a></li>
                     </ul>
-                    <a class="add-to-cart"  (click)="AddTocart(product)">Add to cart</a>
+                    <a class="add-to-cart" href="">Add to cart</a>
                 </div>
                 <div class="product-content">
                     <h3 class="title"><a href="#">{{product.ProductName}}</a></h3>
