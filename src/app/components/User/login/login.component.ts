@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Register} from '../../../core/modal/modal';
 import {AuthServices} from '../../../core/Service/Auth.Service';
-import {Router} from '@angular/router';
+import {Router,  RouterEvent, NavigationEnd} from '@angular/router';
 import {AuthService} from 'angularx-social-login';
 import {GoogleLoginProvider, FacebookLoginProvider, LinkedInLoginProvider} from 'angularx-social-login';
 import { ToastrService } from 'ngx-toastr';
@@ -35,9 +35,16 @@ export class LoginComponent implements OnInit {
           this.routes.navigate(['/product']);
         }, 3000);
      } else {
-      setTimeout(() => {
-        this.routes.navigate(['/']);
-      }, 3000);
+      const prev =  localStorage.getItem('ctoken');
+      if (prev !== null && prev !== undefined) {
+        setTimeout(() => {
+          this.routes.navigate(['/view']);
+        }, 3000);
+      } else {
+        setTimeout(() => {
+          this.routes.navigate(['/']);
+        }, 3000);
+      }
      }
     });
   }

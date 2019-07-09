@@ -10,6 +10,7 @@ import {MenComponent} from '../app/components/User/men/men.component';
 import {WomenComponent} from '../app/components/User/women/women.component';
 import {ProfileComponent} from '../app/components/User/profile/profile.component';
 import {ProductViewComponent} from './components/User/product-view/product-view.component';
+import {PaymentComponent} from '../app/components/User/payment/payment.component';
 const routes: Routes = [
   { path: '', component: MainlayoutComponent,
   children: [
@@ -17,7 +18,8 @@ const routes: Routes = [
     { path: 'men-section', component: MenComponent , pathMatch: 'full' },
     { path: 'female-section', component: WomenComponent , pathMatch: 'full' },
     { path: 'profile/:id', component: ProfileComponent , pathMatch: 'full' },
-    { path: 'view', component: ProductViewComponent , pathMatch: 'full' }
+    { path: 'view', component: ProductViewComponent , pathMatch: 'full' },
+    { path: 'payment', component: PaymentComponent , pathMatch: 'full' }
   ]
 },
 { path: 'Login', component: LoginComponent, pathMatch: 'full' },

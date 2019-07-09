@@ -3,7 +3,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {environment} from '../../../environments/environment';
 import { map } from 'rxjs/operators';
-import {Product, Register} from '../modal/modal';
+import {Product, Register, Cart} from '../modal/modal';
 
 @Injectable({providedIn: 'root'})
 
@@ -157,13 +157,25 @@ export class AuthServices {
     return this.Http.post(URL, body, {headers});
   }
 
-  public getcartdetail(cart) {
+  public getcartdetail(cart): Observable<Cart[]> {
     const URL = this.APIURL + 'findall/' + cart;
     const headers = new HttpHeaders().set('content-type', 'application/json');
-    return this.Http.get(URL, {headers});
+    return this.Http.get<Cart[]>(URL, {headers});
+  }
+
+  public paymentwithstripe(id, user) {
+    const URL = this.APIURL + 'stripepayment';
+    const body = {
+    token : id,
+    Email: user.Email,
+    Price: user.Price
+    };
+    const headers = new HttpHeaders().set('content-type', 'application/json');
+    return this.Http.post(URL, body, {headers});
   }
 
   public logout() {
     localStorage.removeItem('currentUser');
   }
+
 }

@@ -23,9 +23,7 @@ export class MainlayoutComponent implements OnInit {
     const Currentuser = JSON.parse(localStorage.getItem('currentUser'));
     const Cartdetail = (localStorage.getItem('ctoken'));
     if (Cartdetail != null) {
-      this.Service.getcartdetail(Cartdetail).subscribe(Response => {
-
-      });
+     this.prductincart(Cartdetail);
     }
     if (Currentuser != null) {
       this.token = Currentuser.id;
@@ -46,9 +44,22 @@ export class MainlayoutComponent implements OnInit {
      }
 
      public removeproduct(product) {
-       this.data = this.carts.filter(x => x._id === product._id);
-       this.carts.splice(this.data, 1);
-       this.count =  this.carts.length;
+      const ctoken = (localStorage.getItem('ctoken'));
+      if (ctoken != null ) {
+        let val = ctoken.split(',');
+        if (val !== null && val !== undefined) {
+          val = val.map(ids => ids);
+          this.data = val.indexOf(product._id) >= 0;
+          if (this.data) {
+            this.data = this.carts.filter(x => x._id === product._id);
+            this.carts.splice(this.data, 1);
+            val.splice(product._id, 1);
+            this.count =  val.length;
+            this.data = val;
+            localStorage.setItem('ctoken', this.data);
+          }
+        }
+      }
      }
 
 
@@ -62,5 +73,12 @@ export class MainlayoutComponent implements OnInit {
       setTimeout(() => {
       this.route.navigate(['/']);
       }, 3000);
+     }
+
+     public prductincart(cart) {
+      this.Service.getcartdetail(cart).subscribe(Response => {
+        this.carts = Response;
+        this.count = Response.length;
+      });
      }
 }

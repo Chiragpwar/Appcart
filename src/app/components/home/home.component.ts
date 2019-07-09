@@ -31,12 +31,6 @@ export class HomeComponent implements OnInit {
   }
 
    private AddTocart(cart) {
-    if (this.token !== null  && this.token !== undefined) {
-      // this.service.AddTocart(cart).subscribe(Response => {
-      // });
-      this.carts.push(cart);
-      this.main.cartdetail(this.carts);
-    } else {
        this.carts.push(cart);
        this.cartIds.push(cart._id);
        if (this.carts.filter(x => x._id === cart._id).length >= 2) {
@@ -48,7 +42,6 @@ export class HomeComponent implements OnInit {
        if (this.cartIds.length > 0) {
         localStorage.setItem('ctoken', this.cartIds);
        }
-    }
    }
 
 }

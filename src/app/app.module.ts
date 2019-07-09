@@ -24,6 +24,9 @@ import { WomenComponent } from './components/User/women/women.component';
 import { ProfileComponent } from './components/User/profile/profile.component';
 import { ProductViewComponent } from './components/User/product-view/product-view.component';
 import { NgxStripeModule } from 'ngx-stripe';
+import { NgxPayPalModule } from 'ngx-paypal';
+import { PaymentComponent } from './components/User/payment/payment.component';
+import {PreviousRouteService} from '../app/core/Service/shared.service';
 const config = new AuthServiceConfig([
   {
     id: GoogleLoginProvider.PROVIDER_ID,
@@ -53,7 +56,8 @@ export function provideConfig() {
     MenComponent,
     WomenComponent,
     ProfileComponent,
-    ProductViewComponent
+    ProductViewComponent,
+    PaymentComponent
   ],
   imports: [
     BrowserModule,
@@ -66,6 +70,7 @@ export function provideConfig() {
     FormsModule,
     HttpClientModule,
     SocialLoginModule,
+    NgxPayPalModule,
     NgxStripeModule.forRoot('pk_test_xR2HN61CGq9RMib7obP5ieDz00Xhs4nu2t'),
     ToastrModule.forRoot({
       timeOut: 2000,
@@ -82,7 +87,7 @@ export function provideConfig() {
     }),
     MDBBootstrapModule.forRoot()
   ],
-  providers: [MainlayoutComponent, {
+  providers: [MainlayoutComponent, PreviousRouteService, {
     provide: AuthServiceConfig,
     useFactory: provideConfig},
     { provide: HTTP_INTERCEPTORS,

@@ -21,7 +21,7 @@
     </div>
     <div class="container" *ngIf='!warn'>
       <div class="alert alert-warning">
-        <strong>Warning!</strong> Need To login for place order. <a style="cursor: pointer" [routerLink]="['/Login']">Click here for login !</a>
+        <strong>Warning!</strong> Need To login for place your order. <a style="cursor: pointer" [routerLink]="['/Login']">Click here for login !</a>
       </div>
     </div>
     <div class="container" *ngIf='warn'>
@@ -29,7 +29,7 @@
     <div>
       <div class="container">
         <div class="row">
-          <div class="col-md-9">
+          <div class="col-md-8">
             <div class="card" *ngFor="let cart of carts; let i = index">
 
               <div *ngIf="cart != null">
@@ -89,38 +89,23 @@
             </div>
 
           </div>
-          <div class="col-md-3 container" *ngIf='warn'>
+          <div class="col-md-4 container" *ngIf='warn'>
             <div class="card">
               <div class="details">
-                <h3>chirag pawar</h3>
+                <h3>{{register.FirstName}} {{register.LastName}}</h3>
                 <p></p>
-                <p class="product-description">Email : pawarcrg@live.com</p>
-                <p class="product-description">Addres : surat</p>
+                <p class="product-description">Email : {{register.Email}}</p>
+                <p class="product-description">Addres : {{register.Address}} {{register.City}}</p>
                 <h4 class="price">price:
                   <span>$ {{price}}</span></h4>
               </div>
               <p></p>
               
-              <!-- <button class="add-to-cart btn btn-default" type="button"  data-toggle="modal" data-target="#myModal">buy now</button> -->
+              <button class="add-to-cart btn btn-default" type="button" (click)="buynow()" >buy now</button>
             
             </div>
 
           </div>
-          <div class="container" *ngIf='warn'>
-            <form [formGroup]="stripeTest" novalidate (ngSubmit)="Stripe_buy($event)" >
-            <div class="col-lg-6">
-            <input class="form-control" type="text" formControlName="name" placeholder="Name on card">
-            </div>
-            <div class="col-lg-6">
-            <div id="card-element" class="field"></div>
-            </div>
-            <div class="col-lg-12">
-            <button class="btn btn-success" type="submit">
-            BUY
-            </button>
-            </div>
-            </form>
-            </div>
         </div>
       </div>
     </div>
@@ -128,6 +113,25 @@
 
   </body>
 
+  <div mdbModal #basicModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close pull-right" aria-label="Close" (click)="basicModal.hide()">
+            <span aria-hidden="true">×</span>
+          </button>
+          <h4 class="modal-title w-100" id="myModalLabel">login</h4>
+        </div>
+        <div class="modal-body">
+  
+        </div>
+        <div class="modal-footer">
+          <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close" (click)="basicModal.hide()" mdbWavesEffect>Close</button>
+          <button type="button" mdbBtn color="primary" class="relative waves-light" mdbWavesEffect>Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </html>
 
 <!-- <div class="center"> <p> </p><div class="input-group"> <span class="input-group-btn"> <button type="button" class="btn btn-default btn-number" disabled="disabled" data-type="minus" data-field="quant[1]"> <span class="glyphicon glyphicon-minus"></span> </button> </span> <input type="text" name="quant[1]" class="form-control input-number" value="1" min="1" max="10"> <span class="input-group-btn"> <button type="button" class="btn btn-default btn-number" data-type="plus" data-field="quant[1]"> <span class="glyphicon glyphicon-plus"></span> </button> </span> </div> <p></p> </div> -->
