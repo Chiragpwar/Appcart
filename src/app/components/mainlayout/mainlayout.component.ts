@@ -22,10 +22,10 @@ export class MainlayoutComponent implements OnInit {
   ngOnInit() {
     const Currentuser = JSON.parse(localStorage.getItem('currentUser'));
     const Cartdetail = (localStorage.getItem('ctoken'));
-    if (Cartdetail != null) {
+    if (Cartdetail != null && Cartdetail !== '' && Cartdetail !== undefined) {
      this.prductincart(Cartdetail);
     }
-    if (Currentuser != null) {
+    if (Currentuser != null && Currentuser !== '' && Currentuser !== undefined) {
       this.token = Currentuser.id;
       this.GetUserbyId(this.token);
    }
@@ -39,25 +39,20 @@ export class MainlayoutComponent implements OnInit {
       });
      }
 
-     public ProductDetail(val) {
-
-     }
 
      public removeproduct(product) {
       const ctoken = (localStorage.getItem('ctoken'));
       if (ctoken != null ) {
-        let val = ctoken.split(',');
+        const val = ctoken.split(',');
         if (val !== null && val !== undefined) {
-          val = val.map(ids => ids);
-          this.data = val.indexOf(product._id) >= 0;
-          if (this.data) {
-            this.data = this.carts.filter(x => x._id === product._id);
-            this.carts.splice(this.data, 1);
-            val.splice(product._id, 1);
-            this.count =  val.length;
-            this.data = val;
-            localStorage.setItem('ctoken', this.data);
+          this.data = val.indexOf(product._id);
+          if (this.data >= 0) {
+           val.splice(this.data, 1);
           }
+          this.prductincart(val);
+          this.count =  val.length;
+          this.data = val;
+          localStorage.setItem('ctoken', this.data);
         }
       }
      }

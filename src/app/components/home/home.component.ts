@@ -31,15 +31,17 @@ export class HomeComponent implements OnInit {
   }
 
    private AddTocart(cart) {
-       this.carts.push(cart);
-       this.cartIds.push(cart._id);
-       if (this.carts.filter(x => x._id === cart._id).length >= 2) {
-        this.carts.splice(cart, 1);
-        this.cartIds.splice(cart._id, 1);
-        this.tostr.warning(` ${cart.ProductName} with $ ${cart.Productprice} already added into the cart`);
-       }
-       this.main.cartdetail(this.carts);
-       if (this.cartIds.length > 0) {
+      this.cartIds = [];
+      this.cartIds.push(cart._id);
+      if (this.cartIds.filter(x => x === cart._id).length >= 2) {
+      const data = this.cartIds.indexOf(cart._id);
+      if (data >= 0 ) {
+        this.cartIds.splice(data, 1);
+      }
+      this.tostr.warning(` ${cart.ProductName} with $ ${cart.Productprice} already added into the cart`);
+      }
+      this.main.prductincart(this.cartIds);
+      if (this.cartIds.length > 0) {
         localStorage.setItem('ctoken', this.cartIds);
        }
    }

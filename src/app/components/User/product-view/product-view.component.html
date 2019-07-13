@@ -53,7 +53,7 @@
                     </div>
                     <p class="product-description">{{cart.productDescription}}</p>
                     <h4 class="price">current price:
-                      <span>${{cart.Productprice}}</span></h4>
+                      <span>₹{{cart.Productprice}}</span></h4>
                     <p class="vote">
                       <strong>91%</strong>
                       of buyers enjoyed this product!
@@ -65,7 +65,7 @@
                         <p></p>
                         <div class="input-group">
                           <span class="input-group-btn">
-                            <button type="button" class="btn plus btn-default btn-number" data-type="minus" id="minus" (click)="MinusQty(i)">
+                            <button type="button" [disabled]="i == 0 ? 0 : i" class="btn plus btn-default btn-number" data-type="minus" id="minus" (click)="Minusqty(i)">
                               <span class="glyphicon glyphicon-minus">-</span>
                             </button>
                           </span>
@@ -90,7 +90,7 @@
 
           </div>
           <div class="col-md-4 container" *ngIf='warn'>
-            <div class="card">
+            <div class="card" *ngIf = 'loguser'>
               <div class="details">
                 <h3>{{register.FirstName}} {{register.LastName}}</h3>
                 <p></p>
