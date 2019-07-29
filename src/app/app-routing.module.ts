@@ -11,6 +11,8 @@ import {WomenComponent} from '../app/components/User/women/women.component';
 import {ProfileComponent} from '../app/components/User/profile/profile.component';
 import {ProductViewComponent} from './components/User/product-view/product-view.component';
 import {PaymentComponent} from '../app/components/User/payment/payment.component';
+import {VideoComponent} from './components/User/video/video.component';
+
 const routes: Routes = [
   { path: '', component: MainlayoutComponent,
   children: [

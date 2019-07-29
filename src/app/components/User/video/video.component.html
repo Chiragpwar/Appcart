@@ -1,0 +1,40 @@
+
+<div>
+  <h1> Youtube video </h1>
+    <form class="form-inline waves-light" mdbWavesEffect>
+        <div class="md-form mt-0">
+          <input class="form-control mr-sm-2" (blur)="getvideo($event.target.value)" type="text" placeholder="Search">
+        </div>
+      </form>
+</div> 
+
+
+<div class="row" *ngIf = 'youtubedata != null'>
+    <div *ngFor = 'let youtube of youtubedata.items' class="embed-responsive-21by9">
+        <div >
+            <iframe class="embed-responsive-item" [src]="check(youtube)"></iframe>  
+        </div>
+             
+    </div>
+  </div>
+  
+
+
+  <div>
+      <h1> Get All Email </h1>
+    <button class="btn btn-primary" (click)="userEmail()" >fetchmail</button>
+    </div> 
+
+        <div *ngFor = 'let gmail of GmailData'  class="row col-sm-12">
+            <mdb-card>
+                <mdb-card-body>
+                    <h5 >send by :   {{sendby(gmail.payload.headers)}} </h5>
+                  <h4 > {{getsenderEmail(gmail.payload.headers)}} </h4>
+                    {{gmail.snippet}}
+                </mdb-card-body>
+              </mdb-card>
+
+      
+  
+  
+  

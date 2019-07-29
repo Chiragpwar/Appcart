@@ -4,11 +4,13 @@ import {Register, Cart} from '../../../core/modal/modal';
 import {IPayPalConfig, ICreateOrderRequest} from 'ngx-paypal';
 import {StripeService, Elements, Element as StripeElement, ElementsOptions} from 'ngx-stripe';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+
 @Component({
   selector: 'app-payment',
   templateUrl: './payment.component.html',
   styleUrls: ['./payment.component.scss']
 })
+
 export class PaymentComponent implements OnInit {
  register: Register[];
  carts: Cart[];
@@ -29,34 +31,6 @@ export class PaymentComponent implements OnInit {
   };
 
   ngOnInit() {
-
-    this.stripeTest = this.fb.group({
-      name: ['', [Validators.required]]
-    });
-
-    this.stripeService.elements(this.elementsOptions).subscribe(elements => {
-      this.elements = elements;
-      // Only mount the element the first time
-      if (!this.card) {
-        this.card = this.elements.create('card', {
-          style: {
-            base: {
-              iconColor: '#666EE8',
-              color: '#31325F',
-              lineHeight: '40px',
-              fontWeight: 300,
-              fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
-              fontSize: '18px',
-              '::placeholder': {
-                color: '#CFD7E0'
-              }
-            }
-          }
-        });
-        this.card.mount('#card-element');
-      }
-    });
-
     const ctoken = localStorage.getItem('ctoken');
     const currentuser = JSON.parse(localStorage.getItem('currentUser'));
     if (currentuser != null && ctoken != null) {
@@ -64,6 +38,7 @@ export class PaymentComponent implements OnInit {
       this.getproductincart(ctoken);
     }
     this.initConfig();
+    this.initstripe();
   }
 
   private getuserDetail(Id) {
@@ -88,19 +63,19 @@ export class PaymentComponent implements OnInit {
   }
   private initConfig(): void {
     this.payPalConfig = {
-        currency: 'EUR',
+        currency: 'INR',
         clientId: 'ARBe9uS3y58d3_T9jf-zqCPZ8KnH2H_ECuBPOvhl84qSJZBljCRZKmngfmDeeYP5fM3wJ1Jh8oJ5p-gv',
 // tslint:disable-next-line: no-angle-bracket-type-assertion
         createOrderOnClient: (data) => <ICreateOrderRequest> {
             intent: 'CAPTURE',
             purchase_units: [{
                 amount: {
-                    currency_code: 'EUR',
-                    value: '9.99',
+                    currency_code: 'INR',
+                    value: this.price.toString(),
                     breakdown: {
                         item_total: {
-                            currency_code: 'EUR',
-                            value: '9.99'
+                            currency_code: 'INR',
+                            value: this.price.toString()
                         }
                     }
                 },
@@ -109,8 +84,8 @@ export class PaymentComponent implements OnInit {
                     quantity: '1',
                     category: 'DIGITAL_GOODS',
                     unit_amount: {
-                        currency_code: 'EUR',
-                        value: '9.99',
+                        currency_code: 'INR',
+                        value: this.price.toString(),
                     },
                 }]
             }]
@@ -149,6 +124,36 @@ export class PaymentComponent implements OnInit {
     };
 }
 
+public initstripe() {
+  this.stripeTest = this.fb.group({
+    name: ['', [Validators.required]]
+  });
+
+  this.stripeService.elements(this.elementsOptions).subscribe(elements => {
+    this.elements = elements;
+    // Only mount the element the first time
+    if (!this.card) {
+      this.card = this.elements.create('card', {
+        style: {
+          base: {
+            iconColor: '#666EE8',
+            color: '#31325F',
+            lineHeight: '40px',
+            fontWeight: 300,
+            fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+            fontSize: '18px',
+            '::placeholder': {
+              color: '#CFD7E0'
+            }
+          }
+        }
+      });
+      this.card.mount('#card-element');
+    }
+  });
+
+}
+
  buy() {
   const name = this.stripeTest.get('name').value;
   this.stripeService
@@ -168,7 +173,6 @@ export class PaymentComponent implements OnInit {
 
 public PaymentSripe(token, user) {
  this.service.paymentwithstripe(token, user).subscribe(Response => {
-
  });
 }
 }

@@ -174,6 +174,27 @@ export class AuthServices {
     return this.Http.post(URL, body, {headers});
   }
 
+  public youtubevideo(chanelname) {
+    const URL = this.APIURL + 'youtubevideo/' + chanelname;
+    const headers = new HttpHeaders().set('content-type', 'application/json');
+    return this.Http.get(URL, {headers});
+  }
+
+  public GetEmail() {
+    const URL = this.APIURL + 'Googlemail';
+    const headers = new HttpHeaders().set('content-type', 'application/json');
+    return this.Http.get(URL, {headers});
+  }
+
+  public getAllmails(code) {
+    const URL = this.APIURL + 'Googlemailcallback';
+    const body = {
+      code
+    };
+    const headers = new HttpHeaders().set('content-type', 'application/json');
+    return this.Http.post(URL, body, {headers});
+  }
+
   public logout() {
     localStorage.removeItem('currentUser');
   }
